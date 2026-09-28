@@ -1,0 +1,18 @@
+id: 000-kiln
+title: "Bootstrap Kiln OS"
+tier: standard
+stage: plan
+checkpoints:
+  - name: design_plan_approval
+    status: pending
+    approved_by: null
+    timestamp: null
+tokens:
+  budget: 150000
+  spent: 0
+artifacts:
+  intent: work/000-kiln/intent.md
+  spec: work/000-kiln/spec.md
+  plan: work/000-kiln/plan.md
+  review: work/000-kiln/review.md
+active_milestone: M1
