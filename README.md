@@ -280,7 +280,7 @@ kilnOS/
 - [PyYAML](https://pyyaml.org/)
 - [pytest](https://pytest.org/)
 
-## 🤖 Supported Agent Harnesses
+## 🤖 Agent Harnesses
 
 - [OpenCode](https://github.com/opencode-ai)
 - [Cursor](https://cursor.com/)
