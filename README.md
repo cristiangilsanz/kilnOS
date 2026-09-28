@@ -225,7 +225,7 @@ kilnOS/
 ├── .codex/                                             # Codex
 ├── CLAUDE.md                                           # Claude Code
 ├── AGENTS.md                                           # Antigravity
-├── bin/                                                # npx
+├── bin/
 │   └── kiln.js
 ├── scripts/                                            # CLI shell launchers
 │   ├── kiln
