@@ -139,11 +139,19 @@ flowchart TB
 
 ---
 
-# 🚀 **Quickstart**
+# 🔧 **Installation**
 
-### 1. Installation
+## 📋 Requirements
 
-Install via `pip` (Python 3.10+) or run instantly via `npx` (Node.js):
+- **Python 3.10+** (or **Node.js 20+** for zero-setup `npx` execution)
+- **Git 2.30+** (with worktree support enabled)
+- Supported AI coding agent (**Claude Code**, **OpenAI Codex**, **OpenCode / Cursor**, or **Antigravity**)
+
+## ⚡ Quick Start
+
+### 1. Install Kiln OS
+
+Install via `pip` (Python 3.10+) or run instantly via `npx` (Node.js 20+):
 
 ```bash
 # Install via pip
@@ -307,6 +315,52 @@ kilnOS/
 
 ---
 
-# 📜 **License**
+# 📚 **Tech Stack**
 
-This project is licensed under the **MIT License**.
+## 🗣️ Languages
+
+- [Python (3.10+)](https://www.python.org/)
+- [JavaScript / Node.js (20+)](https://nodejs.org/)
+
+## 🧩 Core Engine & Storage
+
+- [SQLite3 & FTS5](https://www.sqlite.org/fts5.html) — Deterministic, disposable full-text index
+- [PyYAML](https://pyyaml.org/) — Schema-validated Git-native Markdown frontmatter
+- [Python AST](https://docs.python.org/3/library/ast.html) — AST code graph & symbol extraction
+- [pytest](https://pytest.org/) — TDD test execution & verification harness
+
+## 🤖 Supported Agent Harnesses
+
+- [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
+- [OpenAI Codex](https://openai.com/)
+- [OpenCode / Cursor](https://cursor.com/)
+- [Google Antigravity](https://deepmind.google/)
+
+## 🌐 Protocols & Ecosystem
+
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) — Universal code-graph protocol bridge
+- [Git Worktrees](https://git-scm.com/docs/git-worktree) — Clean stage isolation & execution
+- [PyPI](https://pypi.org/project/kiln-os/) — Python Package Index distribution
+- [npm Registry](https://www.npmjs.com/package/kiln-os) — Zero-setup npx runner
+
+# 📄 **License**
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+# 📞 **Get Help & Connect**
+
+- 💬 [Start a discussion](https://github.com/cristiangilsanz/kilnOS/discussions)
+- 🐛 [Open an issue](https://github.com/cristiangilsanz/kilnOS/issues)
+
+<div align="center">
+  <br>
+
+  **Made with 💖 for the AI Coding Agent Community**
+
+  ⭐ [Star this repo](https://github.com/cristiangilsanz/kilnOS) · 🍴 [Fork it](https://github.com/cristiangilsanz/kilnOS/fork)
+
+  <br>
+
+  [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/)
+
+</div>
