@@ -1,0 +1,11 @@
+dist/
+build/
+*.egg-info/
+.worktrees/
+__pycache__/
+*.pyc
+.pytest_cache/
+.kiln/graph/index.db*
+tests/
+evals/
+work/

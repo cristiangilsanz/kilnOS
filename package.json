@@ -1,0 +1,30 @@
+{
+  "name": "kiln-os",
+  "version": "0.1.0",
+  "description": "Resilient, token-minimizing operating system for AI coding agents",
+  "bin": {
+    "kiln": "./bin/kiln.js",
+    "kiln-os": "./bin/kiln.js"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "claude-code",
+    "codex",
+    "opencode",
+    "antigravity",
+    "tdd",
+    "token-minimization",
+    "memory-graph"
+  ],
+  "author": "Kiln OS Core Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cristiangilsanz/kilnOS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cristiangilsanz/kilnOS/issues"
+  },
+  "homepage": "https://github.com/cristiangilsanz/kilnOS#readme"
+}

@@ -7,7 +7,7 @@
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-D97706?logo=anthropic&logoColor=fff)
 ![Antigravity](https://img.shields.io/badge/Antigravity-8E75C2?logo=googlegemini&logoColor=fff)
 ![CI](https://img.shields.io/badge/CI-Passing-success.svg?logo=githubactions&logoColor=fff)
-![Tests](https://img.shields.io/badge/Tests-51%20Passed-brightgreen.svg?logo=pytest&logoColor=fff)
+![Tests](https://img.shields.io/badge/Tests-53%20Passed-brightgreen.svg?logo=pytest&logoColor=fff)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 *A resilient, token-minimizing operating system for AI coding agents covering the full software lifecycle.*
@@ -146,7 +146,18 @@ flowchart TB
 # 🚀 **Quickstart**
 
 ### 1. Installation
-Clone the repository and install the Kiln OS CLI locally:
+
+Install via `pip` (Python 3.10+) or run instantly via `npx` (Node.js):
+
+```bash
+# Install via pip
+pip install kiln-os
+
+# Or run instantly with zero setup via npx
+npx kiln-os --help
+```
+
+Or install from source for development:
 ```bash
 git clone https://github.com/cristiangilsanz/kilnOS.git
 cd kilnOS

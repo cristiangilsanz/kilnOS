@@ -44,3 +44,12 @@ jobs:
       - name: Verify adapter drift
         run: |
           python scripts/kiln build-adapters
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Verify npx runner executable
+        run: |
+          node bin/kiln.js --help
