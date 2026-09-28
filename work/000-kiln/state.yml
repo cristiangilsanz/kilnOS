@@ -1,12 +1,12 @@
 id: 000-kiln
 title: "Bootstrap Kiln OS"
 tier: standard
-stage: plan
+stage: build
 checkpoints:
   - name: design_plan_approval
-    status: pending
-    approved_by: null
-    timestamp: null
+    status: approved
+    approved_by: user
+    timestamp: "2026-09-28T17:02:19Z"
 tokens:
   budget: 150000
   spent: 0
