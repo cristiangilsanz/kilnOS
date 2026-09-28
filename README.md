@@ -9,7 +9,7 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Status](https://img.shields.io/badge/Status-In%20Progress-orange.svg)
 
-*A resilient, token-minimizing operating system for AI coding agents covering the full software lifecycle.*
+*A resilient and token-minimizing operating system for AI coding agents covering the full software lifecycle.*
 
 </div>
 
