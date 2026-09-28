@@ -6,8 +6,7 @@
 ![Codex](https://img.shields.io/badge/Codex-412991?logo=openai&logoColor=fff)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-D97706?logo=anthropic&logoColor=fff)
 ![Antigravity](https://img.shields.io/badge/Antigravity-8E75C2?logo=googlegemini&logoColor=fff)
-![CI](https://img.shields.io/badge/CI-Passing-success.svg?logo=githubactions&logoColor=fff)
-![Tests](https://img.shields.io/badge/Tests-53%20Passed-brightgreen.svg?logo=pytest&logoColor=fff)
+![Status](https://img.shields.io/badge/Status-In%20Progress-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 *A resilient, token-minimizing operating system for AI coding agents covering the full software lifecycle.*
@@ -34,92 +33,89 @@ It replaces advisory prompt prose with **deterministic git-backed artifacts, str
 
 ```mermaid
 flowchart TB
-    subgraph Entrypoints["Lifecycle Entrypoints"]
-        idea["Idea / Feature"]:::entry
-        ticket["Issue / Ticket"]:::entry
-        incident["Incident Report"]:::entry
+    subgraph Entrypoints["Entrypoints & Triggers"]
+        idea["Idea / Feature Prompt"]:::client
+        ticket["Issue / Bug Ticket"]:::client
+        incident["Incident Post-Mortem"]:::client
     end
 
-    subgraph Gates["Rigor Gating & Classification"]
-        tierEngine["Tier Classifier Engine"]:::gate
-        spark["Spark Tier (0 Gates)"]:::gate
-        standard["Standard Tier (1 Gate)"]:::gate
-        critical["Critical Tier (2 Gates + Diff)"]:::gate
+    subgraph Rigor["Rigor Engine & Gates"]
+        tierEngine["Tier Classifier Engine"]:::core
+        spark(["Spark (Tier 0: Fast-Track)"]):::gate
+        standard(["Standard (Tier 1: 1 Approval)"]):::gate
+        critical(["Critical (Tier 2: 2 Gates + Diff)"]):::gate
+        securityGates["Fail-Closed Security Gates"]:::infra
     end
 
     subgraph ArtifactChain["Git Artifact Chain (work/<id>/)"]
-        intent["intent.md"]:::artifact
-        spec["spec.md"]:::artifact
-        plan["plan.md"]:::artifact
-        tdd["Build (TDD in Worktree)"]:::artifact
-        review["review.md (Real Output Proof)"]:::artifact
+        intent["intent.md (Problem Scope)"]:::artifact
+        spec["spec.md (Requirements & Non-Goals)"]:::artifact
+        plan["plan.md (TDD Step Plan)"]:::artifact
+        tdd["TDD Runner (Worktree Build)"]:::core
+        review["review.md (Stdout Evidence)"]:::artifact
     end
 
     subgraph MemoryOS["Dual-Graph Memory OS"]
-        subgraph GraphA["Graph A: Code Graph (AST)"]
-            ast["Tree-sitter / Python AST"]:::memA
-            symbols[("Symbols, Calls & Routes")]:::memA
-            readInvariant{"Read File Before Edit"}:::memA
-        end
-
-        subgraph GraphB["Graph B: Knowledge Graph (Git-Native)"]
-            nodes[("Markdown Nodes (.kiln/graph/nodes/)")]:::memB
-            events[("Append-Only events.jsonl")]:::memB
-            sqlite[("SQLite Index (Derived, Rebuildable)")]:::memB
-        end
-
-        retrieval["Deterministic BFS / PageRank (kiln pack)"]:::retrieval
+        nodes[("Markdown Nodes (.kiln/graph/nodes/)")]:::data
+        events[("Append-Only events.jsonl")]:::data
+        sqlite[("Derived FTS5 SQLite Index")]:::data
+        astSymbols[("AST Symbol & Code Graph")]:::data
+        packer["Decayed BFS Context Packer"]:::infra
     end
 
-    subgraph Governor["Token Governor"]
-        l0["L0 Hot Bootstrap (<=300 Tokens)"]:::gov
-        outputFilter["CLI Output Compressor"]:::gov
-        terseReasoning["Terse Chatter Engine"]:::gov
-        linter["CI Budget Linter (kiln lint-tokens)"]:::gov
+    subgraph Governor["Token Governor Services"]
+        l0Hot["L0 Hot Bootstrap (<=300 Tokens)"]:::infra
+        cliFilter["CLI Noise Compressor"]:::infra
+        terseEngine["Terse Chatter Compressor"]:::infra
+        ciLinter["CI Budget Linter (kiln lint-tokens)"]:::infra
     end
 
-    subgraph Adapters["Portable Generated Adapters"]
-        claude["Claude Code (CLAUDE.md & .claude/)"]:::adapt
-        antigravity["Antigravity (AGENTS.md & .agent/)"]:::adapt
-        codex["Codex (.codex/)"]:::adapt
-        opencode["OpenCode / Cursor (.cursorrules)"]:::adapt
+    subgraph External["Agent Harnesses & External APIs"]
+        claude(["Claude Code (CLAUDE.md)"]):::ext
+        antigravity(["Antigravity (AGENTS.md)"]):::ext
+        codex(["OpenAI Codex (.codex/)"]):::ext
+        opencode(["OpenCode / Cursor (.cursorrules)"]):::ext
     end
 
-    idea --> tierEngine
-    ticket --> tierEngine
-    incident --> tierEngine
+    idea -->|"Ingest"| tierEngine
+    ticket -->|"Ingest"| tierEngine
+    incident -->|"Ingest"| tierEngine
 
-    tierEngine --> spark
-    tierEngine --> standard
-    tierEngine --> critical
+    tierEngine -->|"Evaluate"| spark
+    tierEngine -->|"Evaluate"| standard
+    tierEngine -->|"Evaluate"| critical
 
-    spark --> intent
-    standard --> intent
-    critical --> intent
+    spark -->|"Initialize"| intent
+    standard -->|"Initialize"| intent
+    critical -->|"Initialize"| intent
 
-    intent --> spec --> plan --> tdd --> review
+    intent -->|"Specify"| spec
+    spec -->|"Plan"| plan
+    plan -->|"Implement"| tdd
+    tdd -->|"Verify"| review
 
-    nodes --> sqlite
-    events --> sqlite
-    sqlite --> retrieval
-    retrieval --> plan
+    nodes -->|"Sync"| sqlite
+    events -->|"Log"| sqlite
+    sqlite -->|"Query"| packer
+    packer -->|"Inject Budgeted Context"| plan
 
-    symbols --> readInvariant
-    readInvariant --> tdd
+    astSymbols -->|"Enforce Read Invariant"| tdd
+    securityGates -->|"Enforce Pre-Merge Gates"| review
 
-    Governor -.->|"Enforce Limits"| ArtifactChain
-    Governor -.->|"Filter Noise"| tdd
+    cliFilter -->|"Filter Terminal Noise"| tdd
+    terseEngine -->|"Compress Chat Tokens"| ArtifactChain
+    ciLinter -->|"Audit Token Budgets"| ArtifactChain
 
-    Adapters -.->|"Synchronize"| Governor
+    External -.->|"Synchronize Adapters"| Governor
+    External -.->|"Drive Lifecycle"| ArtifactChain
 
-    classDef entry fill:#3b82f6,stroke:#1d4ed8,color:#fff
-    classDef gate fill:#8b5cf6,stroke:#6d28d9,color:#fff
-    classDef artifact fill:#0284c7,stroke:#0369a1,color:#fff
-    classDef memA fill:#059669,stroke:#047857,color:#fff
-    classDef memB fill:#0d9488,stroke:#0f766e,color:#fff
-    classDef retrieval fill:#10b981,stroke:#059669,color:#fff
-    classDef gov fill:#ea580c,stroke:#c2410c,color:#fff
-    classDef adapt fill:#6366f1,stroke:#4f46e5,color:#fff
+    classDef client fill:#181818,color:#fff,stroke:#888,stroke-width:2px,font-weight:bold
+    classDef core fill:#112211,color:#fff,stroke:#2ecc71,stroke-width:2px,font-weight:bold
+    classDef artifact fill:#151c2e,color:#fff,stroke:#4a69bd,stroke-width:1.5px
+    classDef data fill:#221811,color:#fff,stroke:#e67e22,stroke-width:1.5px
+    classDef infra fill:#1f182e,color:#fff,stroke:#9b59b6,stroke-width:1.5px
+    classDef gate fill:#2a1b1b,color:#fff,stroke:#e74c3c,stroke-width:1.5px
+    classDef ext fill:#181818,color:#fff,stroke:#777,stroke-width:1.5px,stroke-dasharray: 4 4
 ```
 
 </div>
