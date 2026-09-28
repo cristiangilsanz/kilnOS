@@ -2,7 +2,8 @@
 <img src="assets/icon.png" width="800">
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=fff)
-![OpenCode](https://img.shields.io/badge/OpenCode-007ACC?logo=cursor&logoColor=fff)
+![OpenCode](https://img.shields.io/badge/OpenCode-007ACC?logo=opencode&logoColor=fff)
+![Cursor](https://img.shields.io/badge/Cursor-000000?logo=cursor&logoColor=fff)
 ![Codex](https://img.shields.io/badge/Codex-412991?logo=data%3Aimage/svg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0yMi4yODIgOS44MjFhNS45ODUgNS45ODUgMCAwIDAtLjUxNi00LjkxIDYuMDQ2IDYuMDQ2IDAgMCAwLTYuNTEtMi45QTYuMDY1IDYuMDY1IDAgMCAwIDQuOTgxIDQuMThhNS45ODUgNS45ODUgMCAwIDAtMy45OTggMi45IDYuMDQ2IDYuMDQ2IDAgMCAwIC43NDMgNy4wOTcgNS45OCA1Ljk4IDAgMCAwIC41MSA0LjkxMSA2LjA1MSA2LjA1MSAwIDAgMCA2LjUxNSAyLjlBNS45ODUgNS45ODUgMCAwIDAgMTMuMjYgMjRhNi4wNTYgNi4wNTYgMCAwIDAgNS43NzItNC4yMDYgNS45OSA1Ljk5IDAgMCAwIDMuOTk3LTIuOSA2LjA1NiA2LjA1NiAwIDAgMC0uNzQ3LTcuMDczek0xMy4yNiAyMi40M2E0LjQ3NiA0LjQ3NiAwIDAgMS0yLjg3Ni0xLjA0bC4xNDEtLjA4MSA0Ljc3OS0yLjc1OGEuNzk1Ljc5NSAwIDAgMCAuMzkyLS42ODF2LTYuNzM3bDIuMDIgMS4xNjhhLjA3MS4wNzEgMCAwIDEgLjAzOC4wNTJ2NS41ODNhNC41MDQgNC41MDQgMCAwIDEtNC40OTQgNC40OTR6TTMuNiAxOC4zMDRhNC40NyA0LjQ3IDAgMCAxLS41MzUtMy4wMTRsLjE0Mi4wODUgNC43ODMgMi43NTlhLjc3MS43NzEgMCAwIDAgLjc4IDBsNS44NDMtMy4zNjl2Mi4zMzJhLjA4LjA4IDAgMCAxLS4wMzMuMDYyTDkuNzQgMTkuOTVhNC41IDQuNSAwIDAgMS02LjE0LTEuNjQ2ek0yLjM0IDguNTI4YTQuNDcxIDQuNDcxIDAgMCAxIDIuMzQ4LTEuOTcyVjEyLjFhLjc5Ljc5IDAgMCAwIC4zOTEuNjg3bDUuODQ0IDMuMzcyLTIuMDIgMS4xNjhhLjA3Ni4wNzYgMCAwIDEtLjA3MSAwbC00LjgzLTIuNzg2QTQuNTA0IDQuNTA0IDAgMCAxIDIuMzQgOC41Mjh6bTE2LjgyMiAzLjk0bC01Ljg0NS0zLjM3MiAyLjAyLTEuMTY4YS4wNzYuMDc2IDAgMCAxIC4wNzEgMGw0LjgzIDIuNzkxYTQuNDk0IDQuNDk0IDAgMCAxLS42NzYgOC4xMDV2LTUuNjc4YS43OS43OSAwIDAgMC0uNDA3LS42NzhoLjAwN3ptMi4wMS0zLjAyM2wtLjE0MS0uMDg1LTQuNzc0LTIuNzgyYS43NzYuNzc2IDAgMCAwLS43ODUgMEw5LjYzIDkuOTU3VjcuNjI1YS4wOC4wOCAwIDAgMSAuMDMzLS4wNjJsNC44NC0yLjc5NmE0LjUgNC41IDAgMCAxIDYuNjcgNC43ODR6bS0xMi42NCA0LjEzNWwtMi4wMi0xLjE2NGEuMDguMDggMCAwIDEtLjAzOC0uMDU3VjYuNzc1YTQuNSA0LjUgMCAwIDEgNy4zNzUtMy40NTNsLS4xNDIuMDgtNC43NzggMi43NThhLjc5NS43OTUgMCAwIDAtLjM5My42ODF2Ni43Mzd6bTEuMTAzLTIuMzk1bDIuNjctMS41NCAyLjY3IDEuNTR2My4wOGwtMi42NyAxLjU0LTIuNjctMS41NHoiLz48L3N2Zz4%3D)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-D97706?logo=anthropic&logoColor=fff)
 ![Antigravity](https://img.shields.io/badge/Antigravity-8E75C2?logo=googlegemini&logoColor=fff)
@@ -19,7 +20,7 @@
 
 <div align="center">
 
-***Kiln OS*** is a production-grade, portable operating system and execution harness for AI coding agents (**OpenCode, Codex, Claude Code, and Antigravity**).
+***Kiln OS*** is a production-grade, portable operating system and execution harness for AI coding agents (**OpenCode, Cursor, Codex, Claude Code, and Antigravity**).
 
 It replaces advisory prompt prose with **deterministic git-backed artifacts, strict hook gates, a 5-tier dual-graph memory OS, and an active Token Governor**. Kiln OS ensures agent tasks are repeatable, self-healing, budgeted, and verified with pasted command execution evidence.
 
@@ -71,7 +72,8 @@ flowchart TB
     end
 
     subgraph External["Agent Harnesses & External APIs"]
-        opencode(["OpenCode / Cursor (.cursorrules)"]):::ext
+        opencode(["OpenCode (.cursorrules)"]):::ext
+        cursor(["Cursor (.cursor/rules/)"]):::ext
         codex(["OpenAI Codex (.codex/)"]):::ext
         claude(["Claude Code (CLAUDE.md)"]):::ext
         antigravity(["Antigravity (AGENTS.md)"]):::ext
@@ -131,7 +133,7 @@ flowchart TB
 * 🧠 **Memory is Data**: Files are ground truth; memory graphs are navigation aids quarantined against prompt injection.
 * 🪙 **Tokens are a Budget**: Scoped reads, byte-stable bootstrap headers, output noise reduction, and CI budget linters.
 * 🔄 **Resilient by Default**: Zero-loss index rebuilds from raw markdown; instant session restore via `kiln resume`.
-* 🔌 **Portable Canonical Source**: Single canonical `.kiln/` definition targets **OpenCode**, **Codex**, **Claude Code**, and **Antigravity**.
+* 🔌 **Portable Canonical Source**: Single canonical `.kiln/` definition targets **OpenCode**, **Cursor**, **Codex**, **Claude Code**, and **Antigravity**.
 
 ---
 
@@ -141,7 +143,7 @@ flowchart TB
 
 - **Python 3.10+** (or **Node.js 20+** for zero-setup `npx` execution)
 - **Git 2.30+** (with worktree support enabled)
-- Supported AI coding agent (**OpenCode / Cursor**, **OpenAI Codex**, **Claude Code**, or **Antigravity**)
+- Supported AI coding agent (**OpenCode**, **Cursor**, **OpenAI Codex**, **Claude Code**, or **Antigravity**)
 
 ## ⚡ Quick Start
 
@@ -169,7 +171,8 @@ Compile portable adapters for your active coding agent:
 ```bash
 kiln build-adapters
 ```
-* Generates `.cursorrules` for **OpenCode / Cursor**.
+* Generates `.cursorrules` for **OpenCode**.
+* Generates `.cursor/rules/` for **Cursor**.
 * Generates `.codex/instructions.md` for **OpenAI Codex**.
 * Generates `CLAUDE.md` and `.claude/skills/` for **Claude Code**.
 * Generates `AGENTS.md` and `.agent/skills/` for **Antigravity**.
@@ -218,6 +221,7 @@ kilnOS/
 ├── package.json
 ├── README.md                                           # You are here! ⬅️
 ├── .cursorrules                                        # OpenCode
+├── .cursor/                                            # Cursor
 ├── .codex/                                             # Codex
 ├── CLAUDE.md                                           # Claude Code
 ├── AGENTS.md                                           # Antigravity
@@ -278,7 +282,8 @@ kilnOS/
 
 ## 🤖 Supported Agent Harnesses
 
-- [OpenCode / Cursor](https://cursor.com/)
+- [OpenCode](https://github.com/opencode-ai)
+- [Cursor](https://cursor.com/)
 - [OpenAI Codex](https://openai.com/)
 - [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
 - [Google Antigravity](https://deepmind.google/)
