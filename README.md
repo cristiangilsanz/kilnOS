@@ -124,18 +124,14 @@ flowchart TB
 
 # ⚡ **Core Principles**
 
-1. **Artifact Chain in Git**: Every task lives in `work/<id>/`. Each stage reads **only** the prior artifact:
-   $$\text{Intent} \longrightarrow \text{Spec} \longrightarrow \text{Plan} \longrightarrow \text{TDD} \longrightarrow \text{Review}$$
-2. **Right-Size Rigor via Tiers**:
-   - **Spark (Tier 0)**: 0 checkpoints (fast-track for typos, docs, cosmetic fixes).
-   - **Standard (Tier 1)**: 1 design approval checkpoint before code.
-   - **Critical (Tier 2)**: 2 checkpoints (Plan + Pre-merge Review) + human diff review.
-3. **Deterministic Beats Advisory**: Guarantees are executable CLI hooks and safety gates, not advisory prompt prose. Security hooks fail closed.
-4. **Evidence Over Claims**: Nothing is marked done without pasted command stdout evidence in `review.md`.
-5. **Memory is Data, Never Instructions**: Files are ground truth; graphs are navigation aids. Memory nodes are quarantined against prompt injection.
-6. **Tokens are a Budget**: Scoped reads, byte-stable bootstrap headers, output noise reduction, and CI budget linters.
-7. **Resilient by Default**: Zero-loss index reconstruction from source files on corruption, and instant session restore via `kiln resume`.
-8. **Portable Canonical Source**: Single canonical `.kiln/` definition with generated adapters for OpenCode, Codex, Claude Code, and Antigravity.
+* 🔗 **Artifact Chain**: `work/<id>/` strictly advances `Intent` ➔ `Spec` ➔ `Plan` ➔ `TDD` ➔ `Review`.
+* ⚖️ **Tiered Rigor**: **Spark** (0 checkpoints, fast-track) • **Standard** (1 design checkpoint) • **Critical** (2 checkpoints + human diff review).
+* 🛡️ **Deterministic Beats Advisory**: Executable CLI hooks and gates fail closed; never rely on advisory prompt prose.
+* 📋 **Evidence Over Claims**: Nothing is marked done without real command stdout pasted in `review.md`.
+* 🧠 **Memory is Data**: Files are ground truth; memory graphs are navigation aids quarantined against prompt injection.
+* 🪙 **Tokens are a Budget**: Scoped reads, byte-stable bootstrap headers, output noise reduction, and CI budget linters.
+* 🔄 **Resilient by Default**: Zero-loss index rebuilds from raw markdown; instant session restore via `kiln resume`.
+* 🔌 **Portable Canonical Source**: Single canonical `.kiln/` definition targets **OpenCode**, **Codex**, **Claude Code**, and **Antigravity**.
 
 ---
 
