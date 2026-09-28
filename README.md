@@ -231,86 +231,50 @@ kiln resume 000-kiln
 
 ```text
 kilnOS/
-├── package.json                                        # npm & npx Package Configuration
-├── pyproject.toml                                      # Python PEP 621 Build & Metadata
-├── .gitignore                                          # Git Exclusion Rules
-├── .npmignore                                          # npm Tarball Filter (lean distributions)
-├── CHANGELOG.md                                        # Semantic Version Release Log
+├── pyproject.toml
+├── package.json
 ├── README.md                                           # You are here! ⬅️
-├── AGENTS.md                                           # Antigravity L0 Hot Bootstrap (<=80 lines)
-├── CLAUDE.md                                           # Claude Code Adapter Entrypoint
-├── .cursorrules                                        # OpenCode / Cursor Adapter Entrypoint
-├── .codex/                                             # OpenAI Codex Adapter Instructions
-│   └── instructions.md
-├── bin/                                                # Node.js Executable Runners
-│   └── kiln.js                                         # Zero-setup npx runner
-├── scripts/                                            # CLI Shell Launchers
-│   ├── kiln                                            # Unix / macOS Executable
-│   └── kiln.bat                                        # Windows Batch Script
-├── .github/workflows/                                  # Continuous Integration & Deployment
-│   ├── ci.yml                                          # Multi-OS & Multi-Python CI Matrix
-│   └── publish.yml                                     # Automated PyPI & npm Release Pipeline
-├── .kiln/                                              # Canonical Kiln OS Storage & Config
-│   ├── config.yaml                                     # Token Limits, Tiers & Engine Settings
-│   ├── templates/                                      # Governed Artifact Templates (<=40 lines)
-│   │   ├── intent.md
-│   │   ├── spec.md
-│   │   ├── plan.md
-│   │   ├── review.md
-│   │   └── release.md
-│   ├── skills/                                         # Canonical Agent Skills
-│   │   ├── kiln-pack/SKILL.md
-│   │   ├── kiln-remember/SKILL.md
-│   │   └── kiln-doctor/SKILL.md
-│   └── graph/                                          # Dual-Graph Memory Engine (Graph B)
-│       ├── nodes/                                      # Git-Native Markdown Knowledge Nodes
-│       │   ├── mod-architecture.md
-│       │   └── rel-0.1.0.md
-│       ├── events.jsonl                                # Append-Only Audit Trail
-│       └── index.db                                    # Derived SQLite FTS5 Index (gitignored)
-├── standards/                                          # Engineering Guardrails & Standards
-│   ├── index.yml                                       # Conditional Routing Index (capped <=5)
-│   ├── tdd.md                                          # Test-Driven Development Standard
-│   └── resilience.md                                   # Fail-Closed Safety & Fault-Tolerance
-├── work/                                               # Governed Task Worktrees & Chains
-│   └── 000-kiln/                                       # Bootstrap Dogfooding Task
-│       ├── intent.md                                   # Task Scope & Rigor Tier
-│       ├── spec.md                                     # Architectural Specification
-│       ├── plan.md                                     # TDD Execution Plan
-│       ├── review.md                                   # Real Stdout Execution Evidence
-│       └── state.yml                                   # Deterministic Task State Machine
-├── src/kiln/                                           # Core Kiln OS Python Package
-│   ├── __init__.py                                     # Top-Level Library API Exports
-│   ├── cli.py                                          # Unified CLI Subcommands Engine
-│   ├── graph/                                          # Knowledge Graph, SQLite & Code AST
-│   │   ├── schema.py                                   # Node Schema & Secret Redaction
-│   │   ├── events.py                                   # Append-Only Event Logger
-│   │   ├── indexer.py                                  # SQLite & FTS5 Derived Cache
-│   │   ├── code_graph.py                               # AST Symbols & Read-Before-Edit Invariant
-│   │   ├── gc.py                                       # Graph Compactor & Stale Archiver
-│   │   └── mcp_bridge.py                               # MCP Protocol Bridge with Local Fallback
-│   ├── retrieval/                                      # Deterministic Context Retrieval
-│   │   └── packer.py                                   # Decayed BFS / PageRank Packer (kiln pack)
-│   ├── governor/                                       # Active Token Minimization Governor
-│   │   ├── filter.py                                   # Repetitive CLI Output Compressor
-│   │   ├── terse.py                                    # Terse Reasoning & Filler Compressor
-│   │   └── audit.py                                    # Session Spend Telemetry & Audit Log
-│   ├── hooks/                                          # Deterministic Safety & Lifecycle Hooks
-│   │   ├── gates.py                                    # Fail-Closed Security & TDD Gates
-│   │   └── state_runner.py                             # Task Resume & State Transitions
-│   ├── pipeline/                                       # End-to-End Task Lifecycle Pipeline
-│   │   ├── task_creator.py                             # Tier Classifier & Task Scaffolding
-│   │   ├── lifecycle.py                                # Artifact Stage Validator & Git Hooks
-│   │   ├── discover.py                                 # Brownfield Tech Stack Detector
-│   │   ├── interviewer.py                              # Structured Clarifying Questions (<=5)
-│   │   ├── gardener.py                                 # Background Stale Node Detector
-│   │   ├── incident.py                                 # Post-Mortem to Intent Loop Closer
-│   │   └── release.py                                  # Release Node & Rollback Authoring
-│   └── adapters/                                       # Cross-Harness Compiler & Drift Guard
-│       ├── primary.py                                  # Claude Code & Antigravity Adapters
-│       └── multi.py                                    # OpenAI Codex & OpenCode / Cursor
-├── tests/                                              # Full Automated Test Suite (53 Tests)
-└── evals/                                              # Retrieval Precision & Token A/B Benchmarks
+├── AGENTS.md                                           # L0 hot bootstrap instructions (<=80 lines)
+├── CLAUDE.md                                           # Generated Claude Code adapter
+├── .cursorrules                                        # Generated OpenCode / Cursor adapter
+├── .codex/                                             # Generated OpenAI Codex adapter
+├── bin/                                                # Executable Node.js / npx runner
+│   └── kiln.js
+├── scripts/                                            # CLI shell launchers
+│   ├── kiln
+│   └── kiln.bat
+├── .github/workflows/                                  # CI & release workflows
+│   ├── ci.yml
+│   └── publish.yml
+├── .kiln/                                              # Canonical Kiln configuration & memory OS
+│   ├── config.yaml
+│   ├── templates/
+│   ├── skills/
+│   └── graph/
+│       ├── nodes/
+│       ├── events.jsonl
+│       └── index.db
+├── standards/                                          # Engineering guardrails & standards
+│   ├── index.yml
+│   ├── tdd.md
+│   └── resilience.md
+├── work/                                               # Governed task artifact chains
+│   └── 000-kiln/
+│       ├── intent.md
+│       ├── spec.md
+│       ├── plan.md
+│       ├── review.md
+│       └── state.yml
+├── src/kiln/                                           # Core Kiln OS engine
+│   ├── cli.py
+│   ├── graph/
+│   ├── retrieval/
+│   ├── governor/
+│   ├── hooks/
+│   ├── pipeline/
+│   └── adapters/
+├── tests/                                              # Automated test suite (53 tests)
+└── evals/                                              # Golden memory & token A/B benchmarks
 ```
 
 ---
@@ -320,14 +284,14 @@ kilnOS/
 ## 🗣️ Languages
 
 - [Python (3.10+)](https://www.python.org/)
-- [JavaScript / Node.js (20+)](https://nodejs.org/)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Node.js (20+)](https://nodejs.org/)
 
-## 🧩 Core Engine & Storage
+## 🧩 Frameworks & Libraries
 
-- [SQLite3 & FTS5](https://www.sqlite.org/fts5.html) — Deterministic, disposable full-text index
-- [PyYAML](https://pyyaml.org/) — Schema-validated Git-native Markdown frontmatter
-- [Python AST](https://docs.python.org/3/library/ast.html) — AST code graph & symbol extraction
-- [pytest](https://pytest.org/) — TDD test execution & verification harness
+- [SQLite3 & FTS5](https://www.sqlite.org/fts5.html)
+- [PyYAML](https://pyyaml.org/)
+- [pytest](https://pytest.org/)
 
 ## 🤖 Supported Agent Harnesses
 
@@ -338,10 +302,10 @@ kilnOS/
 
 ## 🌐 Protocols & Ecosystem
 
-- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) — Universal code-graph protocol bridge
-- [Git Worktrees](https://git-scm.com/docs/git-worktree) — Clean stage isolation & execution
-- [PyPI](https://pypi.org/project/kiln-os/) — Python Package Index distribution
-- [npm Registry](https://www.npmjs.com/package/kiln-os) — Zero-setup npx runner
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
+- [Git Worktrees](https://git-scm.com/docs/git-worktree)
+- [PyPI](https://pypi.org/project/kiln-os/)
+- [npm](https://www.npmjs.com/package/kiln-os)
 
 # 📄 **License**
 
