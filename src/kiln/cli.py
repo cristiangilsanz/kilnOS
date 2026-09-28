@@ -265,12 +265,20 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_audit = subparsers.add_parser("audit", help="Report token telemetry audit for task")
     p_audit.add_argument("work_id", help="Work task ID")
 
+    # incident
+    p_inc = subparsers.add_parser("incident", help="Record incident and spawn remediation intent")
+    p_inc.add_argument("--id", required=True, help="Incident ID (e.g. inc-001)")
+    p_inc.add_argument("--title", required=True, help="Incident title")
+    p_inc.add_argument("--cause", required=True, help="Root cause explanation")
+    p_inc.add_argument("--resolution", required=True, help="Remediation resolution")
+
     args = parser.parse_args(argv)
     if not args.command:
         parser.print_help()
         return 0
 
     from kiln.governor.audit import calculate_session_audit
+    from kiln.pipeline.incident import incident_to_intent
     commands = {
         "remember": cmd_remember,
         "doctor": cmd_doctor,
@@ -279,6 +287,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         "lint-tokens": cmd_lint_tokens,
         "build-adapters": cmd_build_adapters,
         "resume": lambda a: print(resume_task(Path.cwd(), a.work_id, budget_tokens=a.budget)) or 0,
+        "incident": lambda a: (
+            incident_to_intent(Path.cwd(), a.id, a.title, a.cause, a.resolution),
+            print(f"[Success] Incident {a.id} recorded and remediation intent created in work/{a.id}-fix/intent.md")
+        ) and 0 or 0,
         "audit": lambda a: (
             lambda res: (
                 print(f"[Kiln Token Audit] Task: {res['task_id']}"),
