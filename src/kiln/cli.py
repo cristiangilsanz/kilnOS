@@ -16,6 +16,7 @@ from kiln.graph.indexer import compile_graph_index, query_node_by_id
 from kiln.retrieval.packer import pack_context, expand_node
 
 from kiln.adapters.multi import build_all_adapters, check_adapter_drift
+from kiln.hooks.state_runner import resume_task
 
 def get_kiln_paths(base_dir: Optional[Path] = None) -> tuple[Path, Path, Path, Path]:
     base = base_dir or Path.cwd()
@@ -255,6 +256,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     # build-adapters
     subparsers.add_parser("build-adapters", help="Generate harness adapters from .kiln/")
 
+    # resume
+    p_resume = subparsers.add_parser("resume", help="Resume task from work/<id>/state.yml")
+    p_resume.add_argument("work_id", help="Work task ID")
+    p_resume.add_argument("--budget", type=int, default=1500, help="Max context pack budget")
+
     args = parser.parse_args(argv)
     if not args.command:
         parser.print_help()
@@ -267,6 +273,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "node": cmd_node,
         "lint-tokens": cmd_lint_tokens,
         "build-adapters": cmd_build_adapters,
+        "resume": lambda a: print(resume_task(Path.cwd(), a.work_id, budget_tokens=a.budget)) or 0,
     }
     return commands[args.command](args)
 
