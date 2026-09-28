@@ -234,11 +234,11 @@ kilnOS/
 ├── pyproject.toml
 ├── package.json
 ├── README.md                                           # You are here! ⬅️
-├── .cursorrules                                        # Generated OpenCode / Cursor adapter
-├── .codex/                                             # Generated OpenAI Codex adapter
-├── CLAUDE.md                                           # Generated Claude Code adapter
-├── AGENTS.md                                           # Generated Antigravity adapter (<=80 lines)
-├── bin/                                                # Executable Node.js / npx runner
+├── .cursorrules                                        # OpenCode
+├── .codex/                                             # Codex
+├── CLAUDE.md                                           # Claude Code
+├── AGENTS.md                                           # Antigravity
+├── bin/                                                # npx
 │   └── kiln.js
 ├── scripts/                                            # CLI shell launchers
 │   ├── kiln
