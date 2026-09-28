@@ -261,11 +261,16 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_resume.add_argument("work_id", help="Work task ID")
     p_resume.add_argument("--budget", type=int, default=1500, help="Max context pack budget")
 
+    # audit
+    p_audit = subparsers.add_parser("audit", help="Report token telemetry audit for task")
+    p_audit.add_argument("work_id", help="Work task ID")
+
     args = parser.parse_args(argv)
     if not args.command:
         parser.print_help()
         return 0
 
+    from kiln.governor.audit import calculate_session_audit
     commands = {
         "remember": cmd_remember,
         "doctor": cmd_doctor,
@@ -274,6 +279,16 @@ def main(argv: Optional[List[str]] = None) -> int:
         "lint-tokens": cmd_lint_tokens,
         "build-adapters": cmd_build_adapters,
         "resume": lambda a: print(resume_task(Path.cwd(), a.work_id, budget_tokens=a.budget)) or 0,
+        "audit": lambda a: (
+            lambda res: (
+                print(f"[Kiln Token Audit] Task: {res['task_id']}"),
+                print(f"  Prompt Tokens:     {res['total_prompt']}"),
+                print(f"  Cached Tokens:     {res['total_cached']}"),
+                print(f"  Completion Tokens: {res['total_completion']}"),
+                print(f"  Net Billable:      {res['net_billable']}"),
+                print(f"  Telemetry Records: {res['records']}")
+            )
+        )(calculate_session_audit(Path.cwd() / ".kiln" / "audit.jsonl", a.work_id)) and 0 or 0
     }
     return commands[args.command](args)
 
