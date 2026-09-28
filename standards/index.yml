@@ -1,0 +1,19 @@
+standards:
+  - id: std-tdd
+    title: "Test-Driven Development (TDD) Lifecycle"
+    path: standards/tdd.md
+    triggers:
+      - "test"
+      - "build"
+      - "tdd"
+      - "src/**"
+      - "tests/**"
+  - id: std-resilience
+    title: "Fault Tolerance and Self-Healing Systems"
+    path: standards/resilience.md
+    triggers:
+      - "database"
+      - "storage"
+      - "hook"
+      - "error"
+      - "retry"

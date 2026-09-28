@@ -1,0 +1,11 @@
+.worktrees/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.kiln/graph/index.db*
+.kiln/graph/index.db-wal
+.kiln/graph/index.db-shm
+*.egg-info/
+dist/
+build/
+.coverage

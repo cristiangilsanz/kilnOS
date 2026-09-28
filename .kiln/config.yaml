@@ -1,0 +1,18 @@
+version: "1.0.0"
+harness:
+  primary: "claude-code"
+  supported:
+    - "claude-code"
+    - "antigravity"
+    - "codex"
+    - "opencode"
+memory:
+  sqlite_path: ".kiln/graph/index.db"
+  events_path: ".kiln/graph/events.jsonl"
+  nodes_path: ".kiln/graph/nodes"
+token_governor:
+  max_agents_lines: 80
+  max_skill_words: 40
+  max_template_lines: 40
+  max_hot_tokens: 300
+  standards_cap: 5
