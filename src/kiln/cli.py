@@ -154,7 +154,7 @@ def cmd_build_adapters(args: argparse.Namespace) -> int:
     base, _, _, _ = get_kiln_paths()
     print("[Kiln Adapters] Generating harness adapters from canonical .kiln/ source...")
     build_all_adapters(base)
-    print("[Kiln Adapters] Adapters generated for Claude Code, Antigravity, Codex, and OpenCode.")
+    print("[Kiln Adapters] Adapters generated for OpenCode, Codex, Claude Code, and Antigravity.")
     return 0
 
 def cmd_pack(args: argparse.Namespace) -> int:

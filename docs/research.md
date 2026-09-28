@@ -32,17 +32,17 @@
 
 ## 2. Harness Compatibility Matrix
 
-| Capability | Claude Code | OpenAI Codex / CLI | OpenCode / Cursor | Antigravity |
+| Capability | OpenCode / Cursor | OpenAI Codex / CLI | Claude Code | Antigravity |
 | :--- | :--- | :--- | :--- | :--- |
-| **Instruction File** | `CLAUDE.md` (root / home) | `AGENTS.md` (root) | `.cursorrules` / `AGENTS.md` | `AGENTS.md` / `GEMINI.md` |
-| **Skill Format** | `.claude/skills/*/SKILL.md` | *Unverified* (Function calls) | Custom / *Unverified* | Native `SKILL.md` (YAML frontmatter) |
-| **Subagents** | Subagent tasks / processes | OpenAI Assistants/Swarm SDK | Multi-agent runtime (OpenDevin) | Native `invoke_subagent` / `define_subagent` |
-| **Hooks** | Pre/Post tool event hooks | *Unverified* (Wrapper required)| Shell / Git integration | Workflow / Hook scripts & sidecars |
-| **Plugins** | `/plugin` marketplace | Function calling tools | Extension ecosystem | Plugin directory architecture |
-| **Plan Mode** | Native `/plan` command | Custom prompt / *Unverified* | Cursor Composer Planner | Native `/plan` & plan artifacts |
-| **Per-Agent Model**| CLI flag / config per task | API model parameter | Selector per chat/agent | Explicit parameter (`inherit`, `flash`, `pro`)|
-| **Prompt Caching** | Anthropic automatic cache | OpenAI prefix caching | Provider-dependent caching | Automatic context caching |
-| **MCP Support** | Native (`claude.json`) | Adapter / *Unverified* | Native MCP Client | Native MCP Client |
+| **Instruction File** | `.cursorrules` / `AGENTS.md` | `AGENTS.md` (root) | `CLAUDE.md` (root / home) | `AGENTS.md` / `GEMINI.md` |
+| **Skill Format** | Custom / *Unverified* | *Unverified* (Function calls) | `.claude/skills/*/SKILL.md` | Native `SKILL.md` (YAML frontmatter) |
+| **Subagents** | Multi-agent runtime (OpenDevin) | OpenAI Assistants/Swarm SDK | Subagent tasks / processes | Native `invoke_subagent` / `define_subagent` |
+| **Hooks** | Shell / Git integration | *Unverified* (Wrapper required)| Pre/Post tool event hooks | Workflow / Hook scripts & sidecars |
+| **Plugins** | Extension ecosystem | Function calling tools | `/plugin` marketplace | Plugin directory architecture |
+| **Plan Mode** | Cursor Composer Planner | Custom prompt / *Unverified* | Native `/plan` command | Native `/plan` & plan artifacts |
+| **Per-Agent Model**| Selector per chat/agent | API model parameter | CLI flag / config per task | Explicit parameter (`inherit`, `flash`, `pro`)|
+| **Prompt Caching** | Provider-dependent caching | OpenAI prefix caching | Anthropic automatic cache | Automatic context caching |
+| **MCP Support** | Native MCP Client | Adapter / *Unverified* | Native (`claude.json`) | Native MCP Client |
 
 *Note: Vendor benchmark claims and unconfirmed harness specs are categorized as [Unverified] pending Kiln automated test validation.*
 

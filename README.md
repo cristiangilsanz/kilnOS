@@ -19,7 +19,7 @@
 
 <div align="center">
 
-***Kiln OS*** is a production-grade, portable operating system and execution harness for AI coding agents (**Claude Code, Codex, OpenCode, and Antigravity**).
+***Kiln OS*** is a production-grade, portable operating system and execution harness for AI coding agents (**OpenCode, Codex, Claude Code, and Antigravity**).
 
 It replaces advisory prompt prose with **deterministic git-backed artifacts, strict hook gates, a 5-tier dual-graph memory OS, and an active Token Governor**. Kiln OS ensures agent tasks are repeatable, self-healing, budgeted, and verified with pasted command execution evidence.
 
@@ -71,10 +71,10 @@ flowchart TB
     end
 
     subgraph External["Agent Harnesses & External APIs"]
+        opencode(["OpenCode / Cursor (.cursorrules)"]):::ext
+        codex(["OpenAI Codex (.codex/)"]):::ext
         claude(["Claude Code (CLAUDE.md)"]):::ext
         antigravity(["Antigravity (AGENTS.md)"]):::ext
-        codex(["OpenAI Codex (.codex/)"]):::ext
-        opencode(["OpenCode / Cursor (.cursorrules)"]):::ext
     end
 
     idea -->|"Ingest"| tierEngine
@@ -135,7 +135,7 @@ flowchart TB
 5. **Memory is Data, Never Instructions**: Files are ground truth; graphs are navigation aids. Memory nodes are quarantined against prompt injection.
 6. **Tokens are a Budget**: Scoped reads, byte-stable bootstrap headers, output noise reduction, and CI budget linters.
 7. **Resilient by Default**: Zero-loss index reconstruction from source files on corruption, and instant session restore via `kiln resume`.
-8. **Portable Canonical Source**: Single canonical `.kiln/` definition with generated adapters for Claude Code, Antigravity, Codex, and OpenCode.
+8. **Portable Canonical Source**: Single canonical `.kiln/` definition with generated adapters for OpenCode, Codex, Claude Code, and Antigravity.
 
 ---
 
@@ -145,7 +145,7 @@ flowchart TB
 
 - **Python 3.10+** (or **Node.js 20+** for zero-setup `npx` execution)
 - **Git 2.30+** (with worktree support enabled)
-- Supported AI coding agent (**Claude Code**, **OpenAI Codex**, **OpenCode / Cursor**, or **Antigravity**)
+- Supported AI coding agent (**OpenCode / Cursor**, **OpenAI Codex**, **Claude Code**, or **Antigravity**)
 
 ## ⚡ Quick Start
 
@@ -173,10 +173,10 @@ Compile portable adapters for your active coding agent:
 ```bash
 kiln build-adapters
 ```
+* Generates `.cursorrules` for **OpenCode / Cursor**.
+* Generates `.codex/instructions.md` for **OpenAI Codex**.
 * Generates `CLAUDE.md` and `.claude/skills/` for **Claude Code**.
 * Generates `AGENTS.md` and `.agent/skills/` for **Antigravity**.
-* Generates `.codex/instructions.md` for **OpenAI Codex**.
-* Generates `.cursorrules` for **OpenCode / Cursor**.
 
 ### 3. Initialize a Task
 Create a new governed task from an idea:
@@ -234,10 +234,10 @@ kilnOS/
 ├── pyproject.toml
 ├── package.json
 ├── README.md                                           # You are here! ⬅️
-├── AGENTS.md                                           # L0 hot bootstrap instructions (<=80 lines)
-├── CLAUDE.md                                           # Generated Claude Code adapter
 ├── .cursorrules                                        # Generated OpenCode / Cursor adapter
 ├── .codex/                                             # Generated OpenAI Codex adapter
+├── CLAUDE.md                                           # Generated Claude Code adapter
+├── AGENTS.md                                           # Generated Antigravity adapter (<=80 lines)
 ├── bin/                                                # Executable Node.js / npx runner
 │   └── kiln.js
 ├── scripts/                                            # CLI shell launchers
@@ -295,9 +295,9 @@ kilnOS/
 
 ## 🤖 Supported Agent Harnesses
 
-- [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
-- [OpenAI Codex](https://openai.com/)
 - [OpenCode / Cursor](https://cursor.com/)
+- [OpenAI Codex](https://openai.com/)
+- [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
 - [Google Antigravity](https://deepmind.google/)
 
 ## 🌐 Protocols & Ecosystem
