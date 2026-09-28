@@ -210,19 +210,6 @@ kiln resume 000-kiln
 
 ---
 
-# 🛡️ **Safety & Resilience**
-
-* **Fail-Closed Security Gates**:
-  - `check_secrets_gate`: Blocks unredacted API keys, private keys, or tokens.
-  - `check_protected_branch_gate`: Blocks direct modifications to `main` without review approval.
-  - `check_tests_touched_gate`: Enforces TDD by requiring test updates whenever `src/` changes.
-  - `check_prod_gate`: Enforces human approval checkpoints before release.
-* **Fail-Open Helper Hooks**: Formatting and cache warmup failures emit warnings without blocking agent progression.
-* **Prompt Injection Defense**: Memory nodes and tool returns are treated as untrusted data (`<kiln-untrusted-data>`), preventing prompt injection attacks from persisted history.
-* **Self-Healing Index**: If `.kiln/graph/index.db` is deleted or corrupted, `kiln doctor` rebuilds it with 100% query parity from raw `.kiln/graph/nodes/*.md` and `events.jsonl`.
-
----
-
 # 📁 **Project Structure**
 
 ```text
