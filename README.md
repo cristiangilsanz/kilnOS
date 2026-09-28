@@ -7,7 +7,7 @@
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-D97706?logo=anthropic&logoColor=fff)
 ![Antigravity](https://img.shields.io/badge/Antigravity-8E75C2?logo=googlegemini&logoColor=fff)
 ![CI](https://img.shields.io/badge/CI-Passing-success.svg?logo=githubactions&logoColor=fff)
-![Tests](https://img.shields.io/badge/Tests-43%20Passed-brightgreen.svg?logo=pytest&logoColor=fff)
+![Tests](https://img.shields.io/badge/Tests-51%20Passed-brightgreen.svg?logo=pytest&logoColor=fff)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 *A resilient, token-minimizing operating system for AI coding agents covering the full software lifecycle.*

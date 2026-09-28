@@ -281,6 +281,21 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_gate.add_argument("work_id", help="Work task ID")
     p_gate.add_argument("target_stage", help="Target stage (e.g. build, review, release)")
 
+    # discover
+    subparsers.add_parser("discover", help="Scan repository and discover codebase conventions")
+
+    # gc
+    subparsers.add_parser("gc", help="Compact events log and archive superseded nodes")
+
+    # interview
+    p_interview = subparsers.add_parser("interview", help="Interactive clarification interview for task idea")
+    p_interview.add_argument("idea", help="Task idea to clarify")
+
+    # release
+    p_rel = subparsers.add_parser("release", help="Prepare version release and update changelog")
+    p_rel.add_argument("--version", required=True, help="Release version tag (e.g. v1.0.0)")
+    p_rel.add_argument("--summary", required=True, help="Release summary notes")
+
     # incident
     p_inc = subparsers.add_parser("incident", help="Record incident and spawn remediation intent")
     p_inc.add_argument("--id", required=True, help="Incident ID (e.g. inc-001)")
@@ -321,9 +336,46 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(f"[Gate Approved] Task {a.work_id} transitioned to stage '{a.target_stage}'.")
         return 0
 
+    from kiln.pipeline.discover import discover_codebase_conventions
+    from kiln.graph.gc import run_graph_gc
+    from kiln.pipeline.interviewer import generate_clarifying_questions
+    from kiln.pipeline.release import prepare_release
+
+    def handle_discover(a):
+        conv = discover_codebase_conventions(Path.cwd())
+        print(f"[Kiln Discover] Primary language: {conv['primary_language']}")
+        print(f"  Test runner: {conv['test_runner']}")
+        print(f"  Linters:     {', '.join(conv['linters']) or 'none'}")
+        print(f"  Directories: {', '.join(conv['directories'])}")
+        return 0
+
+    def handle_gc(a):
+        stats = run_graph_gc(Path.cwd())
+        print(f"[Kiln GC] Archived {stats['archived_nodes']} superseded nodes. Vacuumed SQLite: {stats['vacuumed']}.")
+        return 0
+
+    def handle_interview(a):
+        questions = generate_clarifying_questions(a.idea)
+        print(f"[Kiln Interview] Shaping idea: '{a.idea}'\n")
+        for i, q in enumerate(questions, 1):
+            print(f"Q{i}: {q['question']}")
+            for opt in q["options"]:
+                print(f"    - {opt}")
+        return 0
+
+    def handle_release(a):
+        rel_node, changelog = prepare_release(Path.cwd(), a.version, a.summary)
+        print(f"[Kiln Release] Created release node: {rel_node}")
+        print(f"  Changelog updated: {changelog}")
+        return 0
+
     commands = {
         "init": lambda a: cmd_build_adapters(a),
         "create": handle_create,
+        "discover": handle_discover,
+        "gc": handle_gc,
+        "interview": handle_interview,
+        "release": handle_release,
         "install-hooks": lambda a: (install_git_hooks(Path.cwd()) and print("[Success] Git safety hooks installed into .git/hooks/") or 0) and 0 or 0,
         "gate": handle_gate,
         "remember": cmd_remember,
