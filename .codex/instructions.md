@@ -1,4 +1,4 @@
-# Kiln OS: Claude Code Instructions
+# Kiln OS: OpenAI Codex Instructions
 
 You are operating inside a repository governed by **Kiln OS**.
 Follow these deterministic principles:

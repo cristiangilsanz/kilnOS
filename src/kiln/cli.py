@@ -15,6 +15,8 @@ from kiln.graph.events import EventLogger
 from kiln.graph.indexer import compile_graph_index, query_node_by_id
 from kiln.retrieval.packer import pack_context, expand_node
 
+from kiln.adapters.multi import build_all_adapters, check_adapter_drift
+
 def get_kiln_paths(base_dir: Optional[Path] = None) -> tuple[Path, Path, Path, Path]:
     base = base_dir or Path.cwd()
     kiln_dir = base / ".kiln"
@@ -134,12 +136,25 @@ def cmd_doctor(args: argparse.Namespace) -> int:
                     print(f"[Error] Stale evidence in {node.id}: SHA256 mismatch for {ev.file}.")
                     issues_found = True
 
+    # 5. Check adapter drift (only if adapters exist or repo initialized)
+    if (base / ".kiln").exists():
+        drifted = check_adapter_drift(base)
+        for d in drifted:
+            print(f"[Warning] Adapter drift detected in {d}. Run 'kiln build-adapters' to resync.")
+
     if issues_found:
         print("[Kiln Doctor] Issues detected!")
         return 1
     else:
         print("[Kiln Doctor] All checks passed cleanly.")
         return 0
+
+def cmd_build_adapters(args: argparse.Namespace) -> int:
+    base, _, _, _ = get_kiln_paths()
+    print("[Kiln Adapters] Generating harness adapters from canonical .kiln/ source...")
+    build_all_adapters(base)
+    print("[Kiln Adapters] Adapters generated for Claude Code, Antigravity, Codex, and OpenCode.")
+    return 0
 
 def cmd_pack(args: argparse.Namespace) -> int:
     base, nodes_dir, events_file, index_db = get_kiln_paths()
@@ -237,6 +252,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     # lint-tokens
     subparsers.add_parser("lint-tokens", help="Check token budgets across files")
 
+    # build-adapters
+    subparsers.add_parser("build-adapters", help="Generate harness adapters from .kiln/")
+
     args = parser.parse_args(argv)
     if not args.command:
         parser.print_help()
@@ -248,6 +266,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "pack": cmd_pack,
         "node": cmd_node,
         "lint-tokens": cmd_lint_tokens,
+        "build-adapters": cmd_build_adapters,
     }
     return commands[args.command](args)
 
