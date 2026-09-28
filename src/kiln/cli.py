@@ -265,6 +265,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_audit = subparsers.add_parser("audit", help="Report token telemetry audit for task")
     p_audit.add_argument("work_id", help="Work task ID")
 
+    # init
+    subparsers.add_parser("init", help="Initialize .kiln workspace and adapters")
+
+    # create
+    p_create = subparsers.add_parser("create", help="Create new task from idea")
+    p_create.add_argument("idea", help="Task idea or objective")
+    p_create.add_argument("--tier", choices=["spark", "standard", "critical"], default=None, help="Rigor tier override")
+
     # incident
     p_inc = subparsers.add_parser("incident", help="Record incident and spawn remediation intent")
     p_inc.add_argument("--id", required=True, help="Incident ID (e.g. inc-001)")
@@ -279,7 +287,18 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     from kiln.governor.audit import calculate_session_audit
     from kiln.pipeline.incident import incident_to_intent
+    from kiln.pipeline.task_creator import create_task
+
+    def handle_create(a):
+        wid, wdir = create_task(Path.cwd(), a.idea, tier_override=a.tier)
+        print(f"[Kiln Task] Created task {wid} in {wdir}")
+        print(f"  Artifact: {wdir / 'intent.md'}")
+        print(f"  State:    {wdir / 'state.yml'}")
+        return 0
+
     commands = {
+        "init": lambda a: cmd_build_adapters(a),
+        "create": handle_create,
         "remember": cmd_remember,
         "doctor": cmd_doctor,
         "pack": cmd_pack,
