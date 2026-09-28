@@ -273,6 +273,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_create.add_argument("idea", help="Task idea or objective")
     p_create.add_argument("--tier", choices=["spark", "standard", "critical"], default=None, help="Rigor tier override")
 
+    # install-hooks
+    subparsers.add_parser("install-hooks", help="Install git safety hooks into .git/hooks/")
+
+    # gate
+    p_gate = subparsers.add_parser("gate", help="Validate stage transition against tier checkpoints")
+    p_gate.add_argument("work_id", help="Work task ID")
+    p_gate.add_argument("target_stage", help="Target stage (e.g. build, review, release)")
+
     # incident
     p_inc = subparsers.add_parser("incident", help="Record incident and spawn remediation intent")
     p_inc.add_argument("--id", required=True, help="Incident ID (e.g. inc-001)")
@@ -288,6 +296,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     from kiln.governor.audit import calculate_session_audit
     from kiln.pipeline.incident import incident_to_intent
     from kiln.pipeline.task_creator import create_task
+    from kiln.pipeline.lifecycle import install_git_hooks, validate_stage_transition
+    from kiln.hooks.state_runner import load_state, save_state
 
     def handle_create(a):
         wid, wdir = create_task(Path.cwd(), a.idea, tier_override=a.tier)
@@ -296,9 +306,26 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(f"  State:    {wdir / 'state.yml'}")
         return 0
 
+    def handle_gate(a):
+        work_dir = Path.cwd() / "work" / a.work_id
+        if not work_dir.exists():
+            print(f"[Error] Task directory {work_dir} not found.")
+            return 1
+        state = load_state(work_dir)
+        allowed = validate_stage_transition(state, a.target_stage)
+        if not allowed:
+            print(f"[Gate Blocked] Transition to '{a.target_stage}' blocked by pending checkpoints in tier '{state.get('tier')}'.")
+            return 1
+        state["stage"] = a.target_stage
+        save_state(work_dir, state)
+        print(f"[Gate Approved] Task {a.work_id} transitioned to stage '{a.target_stage}'.")
+        return 0
+
     commands = {
         "init": lambda a: cmd_build_adapters(a),
         "create": handle_create,
+        "install-hooks": lambda a: (install_git_hooks(Path.cwd()) and print("[Success] Git safety hooks installed into .git/hooks/") or 0) and 0 or 0,
+        "gate": handle_gate,
         "remember": cmd_remember,
         "doctor": cmd_doctor,
         "pack": cmd_pack,

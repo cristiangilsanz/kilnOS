@@ -1,20 +1,20 @@
 id: 000-kiln
-title: "Bootstrap Kiln OS"
+title: Bootstrap Kiln OS
 tier: standard
 stage: review
 checkpoints:
-  - name: design_plan_approval
-    status: approved
-    approved_by: user
-    timestamp: "2026-09-28T17:02:19Z"
-  - name: tdd_build_verification
-    status: approved
-    approved_by: automated_tests
-    timestamp: "2026-09-28T17:39:00Z"
-  - name: pre_merge_review
-    status: approved
-    approved_by: founding_engineer
-    timestamp: "2026-09-28T17:39:10Z"
+- name: design_plan_approval
+  status: approved
+  approved_by: user
+  timestamp: '2026-09-28T17:02:19Z'
+- name: tdd_build_verification
+  status: approved
+  approved_by: automated_tests
+  timestamp: '2026-09-28T17:39:00Z'
+- name: pre_merge_review
+  status: approved
+  approved_by: founding_engineer
+  timestamp: '2026-09-28T17:39:10Z'
 tokens:
   budget: 150000
   spent: 18500
