@@ -1,13 +1,13 @@
 <div align="center">
 <img src="assets/icon.png" width="800">
 
-![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=fff)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=fff)
+![OpenCode](https://img.shields.io/badge/OpenCode-007ACC?logo=visualstudiocode&logoColor=fff)
+![Codex](https://img.shields.io/badge/Codex-412991?logo=openai&logoColor=fff)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-D97706?logo=anthropic&logoColor=fff)
 ![Antigravity](https://img.shields.io/badge/Antigravity-8E75C2?logo=googlegemini&logoColor=fff)
-![OpenAI Codex](https://img.shields.io/badge/OpenAI%20Codex-412991?logo=openai&logoColor=fff)
-![OpenCode](https://img.shields.io/badge/OpenCode-007ACC?logo=visualstudiocode&logoColor=fff)
 ![CI](https://img.shields.io/badge/CI-Passing-success.svg?logo=githubactions&logoColor=fff)
-![Tests](https://img.shields.io/badge/Tests-39%20Passed-brightgreen.svg)
+![Tests](https://img.shields.io/badge/Tests-39%20Passed-brightgreen.svg?logo=pytest&logoColor=fff)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 *A resilient, token-minimizing operating system for AI coding agents covering the full software lifecycle.*
